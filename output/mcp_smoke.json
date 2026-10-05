@@ -1,0 +1,105 @@
+{
+  "problem": "Problem 4: Add the MCP server to vibe coder and test each tool",
+  "server": "campus-customs (.mcp.json, stdio)",
+  "database": "data/campus_customs_new.db",
+  "called_via": "the IDE's MCP client",
+  "tests": [
+    {
+      "prompt": "I'm continuing HW 5 from another session. Before anything else, read AGENTS.md, AI_prompts.md, and output/harness.md to catch up on the scenario, rules, and what's done so far. Key rules: use only gpt-6-luna through Portkey (no other model names anywhere), never change data/campus_customs.db, and keep logging every prompt I send in AI_prompts.md under the problem we're on, word for word. We are on Problem 4.\n\nWith you connected to my MCP server, test each of my three MCP tools. Call them through the MCP connection, not by running the Python file or querying the database directly. Save the evidence in output/mcp_smoke.json. For every tool include:\n-    the prompt I asked you\n-    the tool name\n-    the tool output (must match values in data/campus_customs_new.db)\nAfter testing, check each output against the database directly and tell me if anything doesn't match. Do not call any AI model through Portkey for this problem.",
+      "tool": "mcp__campus-customs__get_invoice_status",
+      "ticket": 101,
+      "arguments": {
+        "invoice_id": 501
+      },
+      "output": {
+        "shop_today": "2026-08-31",
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor_name": "Bulldog Print Co",
+          "vendor_specialty": "apparel reprint",
+          "vendor_lead_days": 5
+        },
+        "is_open": true,
+        "is_overdue": true,
+        "days_overdue": 3,
+        "vendor_open_invoices": [
+          {
+            "id": 501,
+            "amount": 840
+          }
+        ],
+        "vendor_blocked_from_shipping": true
+      }
+    },
+    {
+      "prompt": "I'm continuing HW 5 from another session. Before anything else, read AGENTS.md, AI_prompts.md, and output/harness.md to catch up on the scenario, rules, and what's done so far. Key rules: use only gpt-6-luna through Portkey (no other model names anywhere), never change data/campus_customs.db, and keep logging every prompt I send in AI_prompts.md under the problem we're on, word for word. We are on Problem 4.\n\nWith you connected to my MCP server, test each of my three MCP tools. Call them through the MCP connection, not by running the Python file or querying the database directly. Save the evidence in output/mcp_smoke.json. For every tool include:\n-    the prompt I asked you\n-    the tool name\n-    the tool output (must match values in data/campus_customs_new.db)\nAfter testing, check each output against the database directly and tell me if anything doesn't match. Do not call any AI model through Portkey for this problem.",
+      "tool": "mcp__campus-customs__get_rent_status",
+      "ticket": 102,
+      "arguments": {
+        "lease_id": 1
+      },
+      "output": {
+        "shop_today": "2026-08-31",
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400,
+          "next_due": "2026-09-02",
+          "notes": null
+        },
+        "days_until_due": 2,
+        "is_overdue": false,
+        "cash_accounts": [
+          {
+            "name": "checking",
+            "balance": 3400,
+            "date": "2026-08-31"
+          }
+        ],
+        "cash_covers_rent": true
+      }
+    },
+    {
+      "prompt": "I'm continuing HW 5 from another session. Before anything else, read AGENTS.md, AI_prompts.md, and output/harness.md to catch up on the scenario, rules, and what's done so far. Key rules: use only gpt-6-luna through Portkey (no other model names anywhere), never change data/campus_customs.db, and keep logging every prompt I send in AI_prompts.md under the problem we're on, word for word. We are on Problem 4.\n\nWith you connected to my MCP server, test each of my three MCP tools. Call them through the MCP connection, not by running the Python file or querying the database directly. Save the evidence in output/mcp_smoke.json. For every tool include:\n-    the prompt I asked you\n-    the tool name\n-    the tool output (must match values in data/campus_customs_new.db)\nAfter testing, check each output against the database directly and tell me if anything doesn't match. Do not call any AI model through Portkey for this problem.",
+      "tool": "mcp__campus-customs__check_stock_and_pricing",
+      "ticket": 103,
+      "arguments": {
+        "sku": "CC-HOOD-NAVY",
+        "size": "M",
+        "qty": 20
+      },
+      "output": {
+        "inventory": {
+          "sku": "CC-HOOD-NAVY",
+          "name": "Basic Hoodie Big Yale",
+          "size": "M",
+          "qty": 8,
+          "location": "Aisle A"
+        },
+        "requested_qty": 20,
+        "on_hand": 8,
+        "shortfall": 12,
+        "can_fill_from_stock": false,
+        "pricing": {
+          "unit_cost": 22,
+          "list_price": 58,
+          "margin_per_unit_at_list": 36,
+          "margin_pct_at_list": 62.1,
+          "discount_pct": 0,
+          "unit_price_at_discount": 58,
+          "margin_per_unit_at_discount": 36,
+          "margin_pct_at_discount": 62.1,
+          "order_total_at_discount": 1160,
+          "order_margin_at_discount": 720,
+          "max_discount_pct_before_loss": 62.1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "source": {
+    "audit_trail": "output/audit_trail.json",
+    "database": "data/campus_customs_new.db"
+  },
+  "cash": {
+    "starting_checking_balance": 3400.0,
+    "total_paid_out": 3240.0,
+    "ending_checking_balance": 160.0,
+    "math_checks_out": true
+  },
+  "earlier_attempts_not_counted": [
+    {
+      "run_id": "2f6347d0aa36",
+      "ticket_id": 102
+    },
+    {
+      "run_id": "cdb48f17fae7",
+      "ticket_id": 102
+    },
+    {
+      "run_id": "bee4fb7ca33d",
+      "ticket_id": 101
+    },
+    {
+      "run_id": "70dde2aaaf4c",
+      "ticket_id": 103
+    },
+    {
+      "run_id": "4f611918f5f3",
+      "ticket_id": 102
+    },
+    {
+      "run_id": "bdc331264ce9",
+      "ticket_id": 101
+    },
+    {
+      "run_id": "9b4baf607517",
+      "ticket_id": 103
+    },
+    {
+      "run_id": "0482d54ca8b9",
+      "ticket_id": 103
+    }
+  ],
+  "tickets": [
+    {
+      "id": 101,
+      "subject": "Bulldog tee",
+      "requester": "Tauhid Zaman",
+      "final_status": "resolved",
+      "outcome": "Ticket 101 is for one CC-TEE-WHITE in size S. Inventory has none on hand and reported a one-unit shortfall; Bulldog Print Co's invoice 501 is open and overdue, blocking shipping. Accounting created pending payment request #1 for $840.00. Keep the ticket waiting on human approval of that request; no restock order or fulfillment was completed.",
+      "run_id": "be76bf7dd276",
+      "agents": [
+        {
+          "agent": "Boss",
+          "contribution": "Reviewed ticket 101 and required_payments (none listed), decided the ticket cannot be completed because inventory is short and the vendor is blocked, and set the ticket to waiting_on_human.",
+          "mcp_tools": {
+            "get_ticket": 1,
+            "update_ticket_status": 1
+          }
+        },
+        {
+          "agent": "Inventory",
+          "contribution": "Confirmed no CC-TEE-WHITE size S is on hand for the one needed, identified Bulldog Print Co's five-day lead time and the 2026-09-05 expected arrival if ordered today, and reported invoice 501 blocks shipping; no restock order or fulfillment was completed.",
+          "mcp_tools": {
+            "check_stock_and_pricing": 1,
+            "list_vendors": 1,
+            "get_invoice_status": 1
+          }
+        },
+        {
+          "agent": "Accounting",
+          "contribution": "Created pending payment request #1 for invoice 501, $840.00 from checking; it awaits human approval and no money has moved.",
+          "mcp_tools": {
+            "get_cash_position": 1,
+            "request_payment": 1
+          }
+        }
+      ],
+      "agents_not_used": [
+        "Facilities",
+        "Customer Service"
+      ],
+      "delegations": [
+        "Boss -> Inventory",
+        "Boss -> Accounting",
+        "Inventory -> Accounting"
+      ],
+      "human_approvals": [
+        {
+          "payment_request_id": 1,
+          "payment_id": 1,
+          "kind": "invoice",
+          "payee": "Bulldog Print Co",
+          "amount": 840.0,
+          "approved_by": "silvio dei",
+          "approved_on": "2026-08-31"
+        }
+      ],
+      "pending_payment_requests": [],
+      "usage": {
+        "model_requests": 12,
+        "mcp_tool_calls": 7,
+        "delegations": 3,
+        "tokens": 25619
+      }
+    },
+    {
+      "id": 102,
+      "subject": "Rent due",
+      "requester": "Elm City Properties",
+      "final_status": "resolved",
+      "outcome": "Rent payment of $2,400 for lease 1 was requested and is now recorded as paid (payment request 2; payment ID 2). The required payment is satisfied, so the ticket was resolved. No competing needs were identified in the available ticket facts.",
+      "run_id": "9fb153921b61",
+      "agents": [
+        {
+          "agent": "Boss",
+          "contribution": "Checked the ticket's required payment, confirmed it is recorded as paid, and marked ticket 102 resolved.",
+          "mcp_tools": {
+            "get_ticket": 1,
+            "list_payment_requests": 1,
+            "update_ticket_status": 1
+          }
+        },
+        {
+          "agent": "Accounting",
+          "contribution": "Submitted the $2,400 rent payment request for ticket 102; it was initially reported pending. The latest payment-request listing shows request 2 paid.",
+          "mcp_tools": {
+            "get_rent_status": 1,
+            "get_cash_position": 1,
+            "request_payment": 1
+          }
+        }
+      ],
+      "agents_not_used": [
+        "Inventory",
+        "Facilities",
+        "Customer Service"
+      ],
+      "delegations": [
+        "Boss -> Accounting"
+      ],
+      "human_approvals": [
+        {
+          "payment_request_id": 2,
+          "payment_id": 2,
+          "kind": "rent",
+          "payee": "Elm City Properties",
+          "amount": 2400.0,
+          "approved_by": "silvio dei",
+          "approved_on": "2026-08-31"
+        }
+      ],
+      "pending_payment_requests": [],
+      "usage": {
+        "model_requests": 8,
+        "mcp_tool_calls": 6,
+        "delegations": 1,
+        "tokens": 16132
+      }
+    },
+    {
+      "id": 103,
+      "subject": "Bulk hoodie discount",
+      "requester": "Yale AI Club",
+      "final_status": "resolved",
+      "outcome": "Recommend quoting the list price of $58 per hoodie ($1,160 for 20), since no discount amount or percentage was specified. Do not promise a discount without a specific proposal. Current stock covers 8 of 20; restock 12 from Bulldog Print Co would take 5 days, with expected arrival 2026-09-05 if ordered today. Keep the ticket waiting while the customer indicates whether they can wait for all 20 or prefer a partial fill. No payment is required by the ticket, so no payment request is needed.",
+      "run_id": "a2db8381c22d",
+      "agents": [
+        {
+          "agent": "Boss",
+          "contribution": "Set the ticket to waiting_on_human pending the customer's fulfillment preference; no discount was invented and no payment request was created.",
+          "mcp_tools": {
+            "update_ticket_status": 1
+          }
+        },
+        {
+          "agent": "Inventory",
+          "contribution": "Confirmed 8 are available and 12 are short; identified Bulldog Print Co as the apparel restock option, with 5-day lead time and expected arrival 2026-09-05 if ordered 2026-08-31. Reported no open invoices and vendor not blocked from shipping.",
+          "mcp_tools": {
+            "list_vendors": 1
+          }
+        },
+        {
+          "agent": "Accounting",
+          "contribution": "Confirmed no specific discount was stated; recommended $58 per hoodie ($1,160 total). Reported unit cost $22 and break-even discount about 62.07%; ticket data does not establish a price-override approval requirement.",
+          "mcp_tools": {
+            "check_stock_and_pricing": 1
+          }
+        }
+      ],
+      "agents_not_used": [
+        "Facilities",
+        "Customer Service"
+      ],
+      "delegations": [
+        "Boss -> Accounting",
+        "Boss -> Inventory"
+      ],
+      "human_approvals": [],
+      "pending_payment_requests": [],
+      "usage": {
+        "model_requests": 8,
+        "mcp_tool_calls": 3,
+        "delegations": 2,
+        "tokens": 17285
+      }
+    }
+  ]
+}

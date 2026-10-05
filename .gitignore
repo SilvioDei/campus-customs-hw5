@@ -1,0 +1,13 @@
+.venv/
+.env
+data.zip
+node_modules/
+.claude/settings.local.json
+__pycache__/
+output/*.json.tmp
+frontend/dist/
+*.tsbuildinfo
+desktop.ini
+folder-color-violet.ico
+joke.txt
+.claude/launch.json
